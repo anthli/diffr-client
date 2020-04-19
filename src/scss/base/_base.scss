@@ -1,0 +1,17 @@
+@import '../helpers/variables';
+@import '../partials/displayflex';
+
+html,
+body {
+  font-family: $font-family;
+  height: $page-height;
+  width: $page-width;
+}
+
+#app {
+  height: $page-height;
+}
+
+#diffr {
+  height: $page-height;
+}
