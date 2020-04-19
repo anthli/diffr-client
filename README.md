@@ -1,6 +1,7 @@
 # diffr-client
 
-Just another diff tool. This is the client component of the app.
+Just another diff tool. This is the client component of the app. The server
+component can be found [here](https://github.com/anthli/diffr-server).
 
 diffr is a web application to help visualize the diff between two bodies of
 text.
