@@ -4,6 +4,10 @@
  * This source code is licensed under the MIT license (see LICENSE for details)
  */
 
-@import "base/_base";
-@import "components/_components";
-@import "layouts/_layouts";
+.textbox-container:first-of-type {
+  margin-right: 10px;
+}
+
+.textbox-container:last-of-type {
+  margin-left: 10px;
+}

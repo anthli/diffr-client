@@ -4,6 +4,12 @@
  * This source code is licensed under the MIT license (see LICENSE for details)
  */
 
-@import "base/_base";
-@import "components/_components";
-@import "layouts/_layouts";
+body {
+  color: $main-font-color;
+  font-family: $font-family;
+  margin: 0 15px 0 15px;
+}
+
+h1 {
+  text-align: center;
+}

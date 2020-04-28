@@ -9,9 +9,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Content from "./components/content/Content";
+import Header from "./components/header/Header";
+
 ReactDOM.render(
   <div id="diffr">
-
+    <Header/>
+    <Content/>
   </div>,
   document.getElementById("app")
 );

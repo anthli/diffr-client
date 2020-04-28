@@ -1,0 +1,21 @@
+/**
+ * Copyright (c) 2020 Anthony Li
+ *
+ * This source code is licensed under the MIT license (see LICENSE for details)
+ */
+
+.textbox-container {
+  width: 100%;
+}
+
+.textbox-caption {
+  text-align: center;
+  width: 100%;
+}
+
+.textbox {
+  border: 1px solid $main-font-color;
+  height: 220px;
+  padding: 5px;
+  width: 100%;
+}
