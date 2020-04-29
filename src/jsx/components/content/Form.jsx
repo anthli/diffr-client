@@ -22,7 +22,7 @@ export default class Form extends Component {
     this.state = {
       oldString: "",
       newString: ""
-    }
+    };
   }
 
   oldStringAreaOnChange(event) {
