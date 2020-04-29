@@ -15,9 +15,13 @@ export default class TextBox extends Component {
 
   render() {
     return (
-      <div class="textbox-container">
-        <p class="textbox-caption">{this.props.caption}</p>
-        <textarea class="textbox"></textarea>
+      <div className="textbox-container">
+        <p className="textbox-caption">{this.props.caption}</p>
+        <textarea
+          className="textbox"
+          onChange={this.props.onChange}
+        >
+        </textarea>
       </div>
     );
   }
