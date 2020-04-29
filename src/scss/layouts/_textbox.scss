@@ -9,5 +9,7 @@
 }
 
 .textbox-container:last-of-type {
-  margin-left: 10px;
+  // The right margin needs to be offset an extra 2 pixels to match the amount
+  // of whitespace in the left margin of the first textbox container
+  margin: 0 12px 0 10px;
 }

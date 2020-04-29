@@ -7,7 +7,6 @@ module.exports = {
     "./src/jsx/Main.jsx",
     "./src/scss/main.scss"
   ],
-  mode: "production",
   output: {
     filename: "js/[name].js",
     path: __dirname + "/dist"
@@ -22,7 +21,7 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
-        },
+        }
       },
       {
         test: /\.(sass|scss|css)$/,

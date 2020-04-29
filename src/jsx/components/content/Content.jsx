@@ -6,8 +6,9 @@
 
 "use strict";
 
-import Form from "./Form";
 import React, {Component} from "react";
+
+import Form from "./Form";
 
 export default class Content extends Component {
   constructor(props) {
