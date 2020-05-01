@@ -8,18 +8,41 @@
 
 import React, {Component} from "react";
 
+import Diff from "./Diff";
 import Form from "./Form";
 
+/**
+ * Contains the content of the entire page.
+ */
 export default class Content extends Component {
   constructor(props) {
     super(props);
+
+    this.setDiffs = this.setDiffs.bind(this);
+
+    this.state = {
+      diffs: []
+    };
+  }
+
+  /**
+   * Sets the diffs to the state.
+   *
+   * @param {*} diffs
+   *   The diffs to be set to the state.
+   */
+  setDiffs(diffs) {
+    this.setState({
+      diffs: diffs
+    });
   }
 
   render() {
     return (
       <>
         <p>A diff takes in two bodies of text and computes the differences.</p>
-        <Form/>
+        <Form setDiffs={this.setDiffs}/>
+        <Diff diffs={this.state.diffs}/>
       </>
     );
   }

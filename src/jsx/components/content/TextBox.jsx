@@ -8,6 +8,10 @@
 
 import React, {Component} from "react";
 
+/**
+ * A textbox component that allows for user input and a caption to briefly
+ * describe it.
+ */
 export default class TextBox extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +24,7 @@ export default class TextBox extends Component {
         <textarea
           className="textbox"
           onChange={this.props.onChange}
-        >
-        </textarea>
+        />
       </div>
     );
   }

@@ -4,9 +4,10 @@
  * This source code is licensed under the MIT license (see LICENSE for details)
  */
 
-@import "content";
-@import "button";
-@import "diff";
-@import "form";
-@import "header";
-@import "textbox";
+.diff-delete {
+  background-color: rgb(255, 128, 128);
+}
+
+.diff-insert {
+  background-color: rgb(128, 255, 128);
+}
