@@ -40,7 +40,9 @@ export default class Content extends Component {
   render() {
     return (
       <>
-        <p>A diff takes in two bodies of text and computes the differences.</p>
+        <p>
+          A diff takes in two bodies of text, old and new, and computes the differences.
+        </p>
         <Form setDiffs={this.setDiffs}/>
         <Diff diffs={this.state.diffs}/>
       </>

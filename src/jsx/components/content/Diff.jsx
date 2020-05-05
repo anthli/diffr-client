@@ -16,13 +16,14 @@ export default class Diff extends Component {
     super(props);
 
     this.processDiffs = this.processDiffs.bind(this);
-    this.buildTextGroupingElement = this.buildTextGroupingElement.bind(this);
+    this.processText = this.processText.bind(this);
+    this.buildGroupingElement = this.buildGroupingElement.bind(this);
   }
 
   /**
-   * Processes the diffs by grouping them into texts based on their op
-   * (operation). Each diff will be grouped with the previous diff if the op
-   * matches. For example:
+   * Processes the diffs by grouping them into based on their op (operation).
+   * Each diff will be grouped with the previous diff if the op matches.
+   * For example:
    *
    * {op: EQUAL, text: A}, {op: INSERT, text: B}, {op: INSERT, text: C},
    * {op: EQUAL, text: D}
@@ -34,9 +35,9 @@ export default class Diff extends Component {
    * D
    *
    * @param {*} diffs
-   *   The diffs that will be processed into elements of text groupings.
+   *   The diffs that will be processed into elements of groupings.
    * @returns
-   *   The diffs procssed into elements of text groupings.
+   *   The diffs procssed into elements of groupings.
    */
   processDiffs(diffs) {
     let elements = [];
@@ -45,65 +46,84 @@ export default class Diff extends Component {
     }
 
     let currentOp = "";
-    let textGrouping = "";
-    if (diffs.length > 1) {
-      for (let i = 0; i < diffs.length; i++) {
-        let diff = diffs[i];
-        if (i === 0) {
-          currentOp = diff.op;
-        }
+    let grouping = [];
+    for (let i = 0; i < diffs.length; i++) {
+      let diff = diffs[i];
+      let op = diff.op;
+      let processedText = this.processText(diff.text);
+      if (i === 0) {
+        currentOp = op;
+      }
 
-        // Group this diff with the previous diff
-        if (currentOp === diff.op) {
-          textGrouping += diff.text;
-        }
-        // Reset the grouping. On the last diff, the op and text grouping will
-        // be captured, but needs to be processed outside of the loop
-        else {
-          let element = this.buildTextGroupingElement(
-            elements.length,
-            currentOp,
-            textGrouping
-          );
-          elements.push(element);
+      // Group this diff with the previous diff
+      if (currentOp === op) {
+        grouping.push(processedText);
+      }
 
-          currentOp = diff.op;
-          textGrouping = diff.text;
-        }
+      // The grouping stops here since the op changed
+      if (currentOp !== op) {
+        let element = this.buildGroupingElement(
+          elements.length,
+          currentOp,
+          grouping
+        );
+        elements.push(element);
+
+        currentOp = op;
+        grouping = [processedText];
+      }
+
+      // The final diff will always result in the end of a grouping
+      if (i === diffs.length - 1) {
+        let element = this.buildGroupingElement(
+          elements.length,
+          currentOp,
+          grouping
+        );
+        elements.push(element);
       }
     }
-
-    // This is to process either the only or last diff
-    let element = this.buildTextGroupingElement(
-      elements.length,
-      currentOp,
-      textGrouping
-    );
-    elements.push(element);
 
     return elements;
   }
 
   /**
-   * Builds and returns a span of the text grouping with the class based on the
+   * Processes the text so that is will be dispalyed in a more human-readable
+   * format.
+   *
+   * @param {*} text
+   *   The text to be processed into a more human-readable format.
+   */
+  processText(text) {
+    let processedText = text;
+    // Newline characters should be represented with line break element
+    if (text === "\n") {
+      processedText = <br/>;
+    }
+
+    return processedText;
+  }
+
+  /**
+   * Builds and returns a span of the grouping with the class based on the
    * current op.
    *
    * @param {*} index
-   *   The unique index of the text grouping.
+   *   The unique index of the grouping.
    * @param {*} currentOp
-   *   The current op of the text grouping.
-   * @param {*} textGrouping
-   *   The text grouping to add to the span.
+   *   The current op of the grouping.
+   * @param {*} grouping
+   *   The grouping to add to the span.
    * @returns
-   *   The span of the text grouping with the class based on the current op.
+   *   The span of the grouping with the class based on the current op.
    */
-  buildTextGroupingElement(index, currentOp, textGrouping) {
+  buildGroupingElement(index, currentOp, grouping) {
     return (
       <span
         key={index}
         className={"diff-" + currentOp.toLowerCase()}
       >
-        {textGrouping}
+        {grouping}
       </span>
     );
   }
