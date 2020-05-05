@@ -41,7 +41,9 @@ export default class Content extends Component {
     return (
       <>
         <p>
-          A diff takes in two bodies of text, old and new, and computes the differences.
+          A diff takes in two bodies of text and computes the differences.
+          Old text is highlighted in red, new text is highlighted in green, and
+          text that remained the same is left as is.
         </p>
         <Form setDiffs={this.setDiffs}/>
         <Diff diffs={this.state.diffs}/>
