@@ -7,6 +7,7 @@
 "use strict";
 
 import axios from "axios";
+import Config from "config";
 import React, {Component} from "react";
 
 import TextBox from "./TextBox";
@@ -57,7 +58,7 @@ export default class Form extends Component {
     let params = {
       params: this.state
     };
-    axios.get("http://localhost:8080/diff", params)
+    axios.get(`${Config.diffrServer}/diff`, params)
       .then(res => {
         this.props.setDiffs(res.data);
       });
